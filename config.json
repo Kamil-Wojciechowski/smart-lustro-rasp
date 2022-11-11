@@ -1,1 +1,1 @@
-{"config": {"database_filename": "local_weather.db", "days_to_keep_data": 15, "seconds_to_read_sensor": 1, "listener_port": 5002, "night_mode": true, "power_mode": true}}
+{"config": {"database_filename": "local_weather.db", "days_to_keep_data": 15, "seconds_to_read_sensor": 1, "listener_port": 5002, "night_mode": false, "power_mode": true}}
