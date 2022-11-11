@@ -1,7 +1,7 @@
 #!/bin/bash
 
-git reset --hard 
-git pull 
+git -C ~/Mirror/ reset --hard 
+git -C ~/Mirror/ pull 
 python ~/Mirror/buttons.py &
 python ~/Mirror/motion.py &
 python ~/Mirror/start_listener.py &
