@@ -1,4 +1,5 @@
 import os
 
-os.system('git reset --hard')
-os.system('git pull')
+os.system('pwd')
+os.system('git -C ~/Mirror/ reset --hard')
+os.system('git -C ~/Mirror/ pull')
