@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+<div>
+    Temperature: <span id="temperature_sensor"></span>°C
+</div>
+<div>
+    Humidity: <span id="humidity_sensor"></span>
+</div>
+</body>
+</html>
+
+<style>
+    html {
+        background: black;
+        color: white;
+    }
+</style>
+
+<script>
+    setInterval(function () {
+        getSensorsData();
+    }, 15000);
+
+    function getSensorsData() {
+        $.get('http://localhost:5002/get_sensors_data', function (response) {
+            $('#temperature_sensor').text(response.temperature_sensor);
+            $('#humidity_sensor').text(response.humidity_sensor);
+        });
+        console.log(new Date().toLocaleString());
+    }
+</script>

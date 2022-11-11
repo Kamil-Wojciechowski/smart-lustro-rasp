@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMirror</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body onload = "changeMode(), eventsLoop(), timeSet(), getData()">
+    <div id="container">
+        <div class="main" id="main">
+            <p id="date">Monday, 01 January 1900</p>
+            <h1 id="time">00:00:00</h1>
+        </div>
+        <div class="data" id="data">
+            <p id="temp">Temperature: -- °C</p>
+            <p id="humi">Humidity: -- %</p>
+        </div>
+        <br>
+        
+        <br>
+        <div class="calendar" id="calendar">
+            <p>Upcoming calendar events: </p>
+            <p id="events"></p>
+            <p id="ref"></p>
+        </div>
+    </div>
+</body>
+</html>

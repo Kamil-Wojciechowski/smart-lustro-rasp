@@ -1,0 +1,23 @@
+import sys
+
+import listener_handler
+import start_database
+
+
+def say_hello():
+    print('Mirror v 0.1')
+    print('run with -help to see more options')
+
+
+if len(sys.argv) > 1:
+    option = sys.argv[1]
+    if option == '-database':
+        start_database.run()
+    elif option == '-listener':
+        listener_handler.start_application()
+    elif option == '-help':
+        print('''-database -> Run database activity\n-listener -> Run listener activity''')
+    else:
+        say_hello()
+else:
+    say_hello()
