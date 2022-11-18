@@ -10,8 +10,8 @@ if len(sys.argv) > 1:
         database.remove_expired_records()
         information = p_dht.read_sensor()
         while information['status'] != 200:
-            information = sensors.read_dht_sensor()
+            information = p_dht.read_dht_sensor()
         database.insert_weather_record(information['temperature_sensor'], information['humidity_sensor'])
-        
+
 else:
     listener.start_application()
