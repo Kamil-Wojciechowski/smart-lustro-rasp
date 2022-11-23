@@ -1,6 +1,8 @@
 from gpiozero import MotionSensor
-from Handlers import config
 import time
+import sys
+sys.path.append('../')
+from Handlers import config
 
 pir = MotionSensor(16)
 seconds_to_keep_awake = config.get_property('seconds_to_keep_awake')

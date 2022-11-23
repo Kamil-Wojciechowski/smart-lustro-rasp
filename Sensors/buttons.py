@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 import os
+import sys
+sys.path.append('../')
 from Handlers import config
 
 GPIO.setwarnings(False)
