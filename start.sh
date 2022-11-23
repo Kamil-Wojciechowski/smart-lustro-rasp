@@ -1,8 +1,8 @@
 #!/bin/bash
 
-python ~/Mirror/gitChanges.py
-python ~/Mirror/Sensors/buttons.py &
-python ~/Mirror/Sensors/motion.py &
+#python ~/Mirror/git_changes.py
+python ~/Mirror/sensors/buttons.py &
+python ~/Mirror/sensors/motion.py &
 python ~/Mirror/main.py &
 chromium-browser --kiosk ~/Mirror/smartMirror/index.html
-date +"System up: %d.%m.%Y %H:%M" >> ~/Mirror/Logs/up_logs.txt
+date +"System up: %d.%m.%Y %H:%M" >> ~/Mirror/logs.txt

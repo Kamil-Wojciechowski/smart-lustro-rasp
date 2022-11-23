@@ -1,10 +1,9 @@
+import __init__
 from flask import Flask, jsonify
 from flask_cors import CORS
 import requests
-import sys
-sys.path.append('../')
-from Handlers import config, database
-from Sensors import p_dht
+from handlers import config, database
+from sensors import p_dht
 
 application = Flask(__name__)
 CORS(application)

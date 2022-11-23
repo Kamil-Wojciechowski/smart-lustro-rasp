@@ -1,6 +1,6 @@
+import __init__
 import time
-
-from Handlers import config
+from handlers import config
 
 
 def get_current_millis():
