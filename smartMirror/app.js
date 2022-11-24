@@ -113,6 +113,7 @@ function isAwake(){
         $('.forecast').css("display","block");
         getData();
     },300000)
+    window.localStorage.setItem('awaken', false);
 }
 
 function getData(){
@@ -128,10 +129,10 @@ function changeMode(){
     getDht();
     getForecast();
     
-    let awaken=true;
-    isAwake(awaken);
-    awaken=false;
-    while(!awaken){
+    window.localStorage.setItem('awaken', true);
+    isAwake();
+    
+    while(window.localStorage.getItem('awaken') == false){
         setInterval(function(){
             $.get( endpoint+'/is_awake', function (data){
                 if(data.is_awake){
@@ -143,9 +144,9 @@ function changeMode(){
                     $('.forecast').css("display","none");
                 }
                 else if(!data.is_awake){
-                    awaken=true;
-                    isAwake(awaken);
-                    awaken=false;
+                    window.localStorage.setItem('awaken', true);
+                    isAwake();
+                    
                 }
             })
         },1000)
