@@ -121,6 +121,7 @@ function getData(){
 function changeMode(){    
     getDht();
     getForecast();
+    isAwake();
     setInterval(function(){
         $.get( endpoint+'/is_awake', function (data){
             if(data.is_awake){
