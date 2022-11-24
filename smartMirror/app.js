@@ -67,8 +67,8 @@ function getForecast(){
     
         $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
             if(data.cod == "200"){
-                let todTemp = toString(parseFloat(data.list[0].main.temp)-273.15);
-                let tomTemp = toString(parseFloat(data.list[3].main.temp)-273.15);
+                let todTemp = parseFloat(data.list[0].main.temp)-273.15;
+                let tomTemp = parseFloat(data.list[3].main.temp)-273.15;
                 let todHumi = data.list[0].main.humidity;
                 let tomHumi = data.list[3].main.humidity;
                 let todDesc = data.list[0].weather[0].main;
@@ -127,20 +127,26 @@ function getData(){
 function changeMode(){    
     getDht();
     getForecast();
+    
+    let awaken=true;
     isAwake();
-    setInterval(function(){
-        $.get( endpoint+'/is_awake', function (data){
-            if(data.is_awake){
-                $('.main').css("text-align","center");
-                $('.left').css("width","100%");
-                $('.right').css("width","0%");
-                $('.data').css("display","none");
-                $('.calendar').css("display","none");
-                $('.forecast').css("display","none");
-            }
-            else if(!data.is_awake){
-                isAwake();
-            }
-        })
-    },1000)
+    while(!awaken){
+        setInterval(function(){
+            $.get( endpoint+'/is_awake', function (data){
+                if(data.is_awake){
+                    $('.main').css("text-align","center");
+                    $('.left').css("width","100%");
+                    $('.right').css("width","0%");
+                    $('.data').css("display","none");
+                    $('.calendar').css("display","none");
+                    $('.forecast').css("display","none");
+                }
+                else if(!data.is_awake){
+                    awaken=true;
+                    isAwake();
+
+                }
+            })
+        },1000)
+    }
 }
