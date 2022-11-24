@@ -97,42 +97,9 @@ function getDateTime(){
     },1000)
 }
 
-function isAwake(){
-    $('.main').css("text-align","left");
-        $('.data').css("display","block");
-        $('.left').css("width","50%");
-        $('.right').css("width","50%");
-        $('.calendar').css("display","block");
-        $('.forecast').css("display","block");
-    setTimeout(function(){
-        $('.main').css("text-align","left");
-        $('.data').css("display","block");
-        $('.left').css("width","50%");
-        $('.right').css("width","50%");
-        $('.calendar').css("display","block");
-        $('.forecast').css("display","block");
-        getData();
-    },300000)
-    window.localStorage.setItem('awaken', false);
-}
-
-function getData(){
-    getDht();
-    getForecast();
-    setInterval(function(){
-        getDht();
-        getForecast();
-    },60000)
-}
-
 function changeMode(){    
     getDht();
     getForecast();
-    
-    window.localStorage.setItem('awaken', true);
-    isAwake();
-    
-    while(window.localStorage.getItem('awaken') == false){
         setInterval(function(){
             $.get( endpoint+'/is_awake', function (data){
                 if(data.is_awake){
@@ -143,12 +110,16 @@ function changeMode(){
                     $('.calendar').css("display","none");
                     $('.forecast').css("display","none");
                 }
-                else if(!data.is_awake){
-                    window.localStorage.setItem('awaken', true);
-                    isAwake();
-                    
+                else{
+                    $('.main').css("text-align","left");
+                    $('.data').css("display","block");
+                    $('.left').css("width","50%");
+                    $('.right').css("width","50%");
+                    $('.calendar').css("display","block");
+                    $('.forecast').css("display","block");
+                    getDht();
+                    getForecast();
                 }
             })
         },1000)
-    }
 }
