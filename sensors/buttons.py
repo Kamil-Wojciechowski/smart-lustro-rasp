@@ -1,6 +1,7 @@
 import __init__
 import RPi.GPIO as GPIO
 import time
+import os
 from handlers import config
 
 GPIO.setwarnings(False)
