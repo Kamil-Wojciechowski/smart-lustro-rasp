@@ -1,6 +1,6 @@
 #!/bin/bash
-
 #python ~/Mirror/git_changes.py
+
 python ~/Mirror/sensors/buttons.py &
 python ~/Mirror/sensors/motion.py &
 python ~/Mirror/main.py &
