@@ -89,6 +89,8 @@ function changeMode(){
         $.get( endpoint+'/is_awake', function (data){
             if(data.is_awake){
                 $('.main').css("text-align","center");
+                $('.left').css("width","100%");
+                $('.right').css("width","0%");
                 $('.data').css("display","none");
                 $('.calendar').css("display","none");
                 $('.forecast').css("display","none");
@@ -97,6 +99,8 @@ function changeMode(){
                 getData();
                 $('.main').css("text-align","left");
                 $('.data').css("display","block");
+                $('.left').css("width","50%");
+                $('.right').css("width","50%");
                 $('.calendar').css("display","block");
                 $('.forecast').css("display","none");
             }
