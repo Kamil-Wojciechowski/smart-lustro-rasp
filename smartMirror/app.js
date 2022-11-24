@@ -67,8 +67,8 @@ function getForecast(){
     
         $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
             if(data.cod == "200"){
-                let todTemp = parseFloat(data.list[0].main.temp)-273.15;
-                let tomTemp = parseFloat(data.list[3].main.temp)-273.15;
+                let todTemp = (parseFloat((data.list[0].main.temp))-273.15).toFixed(0);
+                let tomTemp = (parseFloat((data.list[3].main.temp))-273.15).toFixed(0);
                 let todHumi = data.list[0].main.humidity;
                 let tomHumi = data.list[3].main.humidity;
                 let todDesc = data.list[0].weather[0].main;
