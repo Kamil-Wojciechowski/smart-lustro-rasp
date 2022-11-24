@@ -131,7 +131,7 @@ function changeMode(){
                 $('.calendar').css("display","none");
                 $('.forecast').css("display","none");
             }
-            else{
+            else if(!data.is_awake){
                 isAwake();
             }
         })
