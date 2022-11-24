@@ -1,7 +1,7 @@
+import __init__
 import RPi.GPIO as GPIO
 import time
-import os
-from Handlers import config
+from handlers import config
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)

@@ -1,6 +1,6 @@
 import sys
-from Handlers import listener, database
-from Sensors import p_dht
+from handlers import listener, database
+from sensors import p_dht
 
 
 if len(sys.argv) > 1:

@@ -1,6 +1,7 @@
+import __init__
 import sqlite3
 import os
-from Handlers import config, p_time
+from handlers import config, p_time
 
 
 database_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', config.get_property('database_filename')))
