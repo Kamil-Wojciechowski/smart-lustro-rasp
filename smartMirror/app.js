@@ -70,6 +70,28 @@ function getData(){
     }, 10000);
 }
 
+function getForecast(){
+    $.get( endpoint+'/get_outside_weather', function (data){
+        if(data.cod == "200"){
+            let todTemp = toString(parseFloat(data.list[0].main.temp).val()-273.15);
+            let tomTemp = toString(parseFloat(data.list[3].main.temp).val()-273.15);
+            let todHumi = data.list[0].main.humidity;
+            let tomHumi = data.list[3].main.humidity;
+            let todDesc = data.list[0].weather[0].main;
+            let tomDesc = data.list[3].weather[0].main;
+            let tod = todDesc+ ", "+todTemp+" °C, "+todHumi+" %";
+            let tom = tomDesc+ ", "+tomTemp+" °C, "+tomHumi+" %";
+            $("#today").html("Today's weather: "+tod);
+            $("#tomorrow").html("Tomorrow's weather: "+tom);
+        }
+        else{
+            $("#today").html("Today's weather: --");
+            $("#tomorrow").html("Tomorrow's weather: --");
+        }
+        
+    })
+}
+
 function getDateTime(){
     setInterval(function(){
     const event = new Date();
@@ -83,7 +105,7 @@ function getDateTime(){
 
 function changeMode(){    
     getData();
-    
+    getForecast();
     setInterval(function(){
         
         $.get( endpoint+'/is_awake', function (data){
@@ -97,6 +119,7 @@ function changeMode(){
             }
             else{
                 getData();
+                getForecast();
                 $('.main').css("text-align","left");
                 $('.data').css("display","block");
                 $('.left').css("width","50%");
