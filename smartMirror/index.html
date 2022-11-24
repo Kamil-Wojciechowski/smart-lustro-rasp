@@ -9,18 +9,26 @@
     <script src="jquery.js"></script>
     <script src="app.js"></script>
 </head>
-<body onload = "changeMode(), eventsLoop(), timeSet(), getData()">
+<body onload = "changeMode(), eventsLoop(), getDateTime()">
     <div id="container">
-        <div class="main" id="main">
-            <p id="date">Monday, 01 January 1900</p>
-            <h1 id="time">00:00:00</h1>
+        <div class="horizontal">
+            <div class="left">
+                <div class="main" id="main">
+                    <p id="date">Monday, 01 January 1900</p>
+                    <h1 id="time">00:00:00</h1>
+                </div>
+                <div class="data" id="data">
+                    <p id="temp">Temperature: -- °C</p>
+                    <p id="humi">Humidity: -- %</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="forecast">
+                    <p>Today's weather: --</p>
+                    <p>Tomorrow's weather: --</p>
+                </div> 
+            </div>
         </div>
-        <div class="data" id="data">
-            <p id="temp">Temperature: -- °C</p>
-            <p id="humi">Humidity: -- %</p>
-        </div>
-        <br>
-        
         <br>
         <div class="calendar" id="calendar">
             <p>Upcoming calendar events: </p>
