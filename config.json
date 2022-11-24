@@ -4,7 +4,7 @@
  "listener_host": "localhost",
  "listener_port": 5002,
  "is_awake": true,
- "seconds_to_keep_awake": 5,
+ "seconds_to_keep_awake": 60,
  "is_power": true,
  "power_mode": true
 }
