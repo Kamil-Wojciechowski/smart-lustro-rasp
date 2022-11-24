@@ -1,9 +1,0 @@
-{
- "database_filename": "weather_history.db",
- "days_to_keep_history": 15,
- "listener_host": "localhost",
- "listener_port": 5002,
- "is_awake": true,
- "seconds_to_keep_awake": 5,
- "is_power": true
-}
