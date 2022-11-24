@@ -67,8 +67,8 @@ function getForecast(){
     
         $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
             if(data.cod == "200"){
-                let todTemp = toString(parseFloat(data.list[0].main.temp).val()-273.15);
-                let tomTemp = toString(parseFloat(data.list[3].main.temp).val()-273.15);
+                let todTemp = toString(parseFloat(data.list[0].main.temp)-273.15);
+                let tomTemp = toString(parseFloat(data.list[3].main.temp)-273.15);
                 let todHumi = data.list[0].main.humidity;
                 let tomHumi = data.list[3].main.humidity;
                 let todDesc = data.list[0].weather[0].main;
@@ -97,11 +97,31 @@ function getDateTime(){
     },1000)
 }
 
+function isAwake(){
+    setTimeout(function(){
+        $('.main').css("text-align","left");
+        $('.data').css("display","block");
+        $('.left').css("width","50%");
+        $('.right').css("width","50%");
+        $('.calendar').css("display","block");
+        $('.forecast').css("display","block");
+        getData();
+    },300000)
+}
+
+function getData(){
+    getDht();
+    getForecast();
+    setInterval(function(){
+        getDht();
+        getForecast();
+    },60000)
+}
+
 function changeMode(){    
     getDht();
     getForecast();
     setInterval(function(){
-        
         $.get( endpoint+'/is_awake', function (data){
             if(data.is_awake){
                 $('.main').css("text-align","center");
@@ -112,17 +132,8 @@ function changeMode(){
                 $('.forecast').css("display","none");
             }
             else{
-                $('.main').css("text-align","left");
-                    $('.data').css("display","block");
-                    $('.left').css("width","50%");
-                    $('.right').css("width","50%");
-                    $('.calendar').css("display","block");
-                    $('.forecast').css("display","block");
-                setInterval(function(){
-                    getDht();
-                    getForecast();
-                },1000)
+                isAwake();
             }
         })
-    },300000)
+    },1000)
 }
