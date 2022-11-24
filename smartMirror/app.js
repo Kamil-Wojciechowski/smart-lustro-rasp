@@ -63,15 +63,8 @@ function getDht(){
     })
 }
 
-function getData(){
-    getDht();
-    setInterval(function(){
-        getDht();
-    }, 10000);
-}
-
 function getForecast(){
-    setInterval(function(){
+    
         $.get( endpoint+'/get_outside_weather', function (data){
             if(data.cod == "200"){
                 let todTemp = toString(parseFloat(data.list[0].main.temp).val()-273.15);
@@ -90,7 +83,7 @@ function getForecast(){
                 $("#tomorrow").html("Tomorrow's weather: --");
             }
         })
-    }, 10000);
+    
 }
 
 function getDateTime(){
@@ -105,7 +98,7 @@ function getDateTime(){
 }
 
 function changeMode(){    
-    getData();
+    getDht();
     getForecast();
     setInterval(function(){
         
@@ -119,14 +112,16 @@ function changeMode(){
                 $('.forecast').css("display","none");
             }
             else{
-                getData();
-                getForecast();
                 $('.main').css("text-align","left");
-                $('.data').css("display","block");
-                $('.left').css("width","50%");
-                $('.right').css("width","50%");
-                $('.calendar').css("display","block");
-                $('.forecast').css("display","block");
+                    $('.data').css("display","block");
+                    $('.left').css("width","50%");
+                    $('.right').css("width","50%");
+                    $('.calendar').css("display","block");
+                    $('.forecast').css("display","block");
+                setInterval(function(){
+                    getDht();
+                    getForecast();
+                },1000)
             }
         })
     },300000)
