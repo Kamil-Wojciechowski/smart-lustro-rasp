@@ -27,7 +27,7 @@ def get_outside_weather():
     url = 'https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2'
     try:
         response = requests.get(url)
-        return jsonify(response.text), 200
+        return jsonify(response), 200
     except:
         return '', 400
 
