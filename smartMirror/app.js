@@ -129,7 +129,8 @@ function changeMode(){
     getForecast();
     
     let awaken=true;
-    isAwake();
+    isAwake(awaken);
+    awaken=false;
     while(!awaken){
         setInterval(function(){
             $.get( endpoint+'/is_awake', function (data){
@@ -143,8 +144,8 @@ function changeMode(){
                 }
                 else if(!data.is_awake){
                     awaken=true;
-                    isAwake();
-
+                    isAwake(awaken);
+                    awaken=false;
                 }
             })
         },1000)
