@@ -65,7 +65,7 @@ function getDht(){
 
 function getForecast(){
     
-        $.get( endpoint+'/get_outside_weather', function (data){
+        $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
             if(data.cod == "200"){
                 let todTemp = toString(parseFloat(data.list[0].main.temp).val()-273.15);
                 let tomTemp = toString(parseFloat(data.list[3].main.temp).val()-273.15);
