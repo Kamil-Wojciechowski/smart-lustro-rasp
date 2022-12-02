@@ -123,3 +123,7 @@ function changeMode(){
             })
         },1000)
 }
+
+function mouse(){
+    $('body').css("cursor","url(./cursor.png)")
+}
