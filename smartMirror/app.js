@@ -13,23 +13,23 @@ function getEvents(time){
            'Authorization': "Bearer "+window.localStorage.getItem('accessToken'),
         }
      });
-    $.get( 'https://www.googleapis.com/calendar/v3/calendars/wojciechowska.danuta595@gmail.com/events?maxResult=5&timeMin='+time , function (data){
+    $.get( 'https://www.googleapis.com/calendar/v3/calendars/7e0430f461871d8173cb80291310e587890af8a5db6c240c2d4addd0f66d7bd6@group.calendar.google.com/events?maxResult=5&timeMin='+time , function (data){
         $("#events").html(" ");
         $.each(data['items'], function(index, value) {
             let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'};
             if(value.start.date){
                 let d1 = new Date(value.start.date);
-                $("#events").append(d1.toLocaleDateString('en-GB', options)+" (all day) -- <b>"+value.summary+"<b><br>");
+                $("#events").append(d1.toLocaleDateString('pl-PL', options)+" (cały dzień) -- <b>"+value.summary+"<b><br>");
             }
             else if (value.start.dateTime){
                 let d1 = new Date(value.start.dateTime);
                 let d2 = new Date(value.end.dateTime);
-                $("#events").append(d1.toLocaleDateString('en-GB', options)+" "+d1.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })+" - "+d2.toLocaleTimeString('en-GB',  { hour: '2-digit', minute: '2-digit' })+" -- <b>"+value.summary+"<b><br>");
+                $("#events").append(d1.toLocaleDateString('pl-PL', options)+" "+d1.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })+" - "+d2.toLocaleTimeString('pl-PL',  { hour: '2-digit', minute: '2-digit' })+" -- <b>"+value.summary+"<b><br>");
             }
         });  
         })
     .fail(function() {
-        $("#events").html("NO EVENTS YET");
+        $("#events").html("BRAK WYDARZEŃ");
         window.localStorage.setItem('identify', 0);
     });
 }
@@ -56,8 +56,8 @@ function eventsLoop(){
 function getDht(){
     $.get( endpoint+'/get_dht_data', function (data){
         if(data.temperature_sensor){
-            $('#temp').html("Temperature: "+data.temperature_sensor+' °C');
-            $('#humi').html("Humidity: "+data.humidity_sensor+' %'); 
+            $('#temp').html("Temperatura: "+data.temperature_sensor+' °C');
+            $('#humi').html("Wilgotność: "+data.humidity_sensor+' %'); 
             
         }
     })
@@ -65,22 +65,24 @@ function getDht(){
 
 function getForecast(){
     
-        $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
+        $.get( "https://api.openweathermap.org/data/2.5/forecast?lat=51.9383777&lang=pl&lon=15.5050408&appid=1610df520907691bbe49c15333e337b2", function (data){
             if(data.cod == "200"){
                 let todTemp = (parseFloat((data.list[0].main.temp))-273.15).toFixed(0);
                 let tomTemp = (parseFloat((data.list[3].main.temp))-273.15).toFixed(0);
                 let todHumi = data.list[0].main.humidity;
                 let tomHumi = data.list[3].main.humidity;
-                let todDesc = data.list[0].weather[0].main;
-                let tomDesc = data.list[3].weather[0].main;
-                let tod = todDesc+ ", "+todTemp+" °C, "+todHumi+" %";
-                let tom = tomDesc+ ", "+tomTemp+" °C, "+tomHumi+" %";
-                $("#today").html("Today's weather: "+tod);
-                $("#tomorrow").html("Tomorrow's weather: "+tom);
+                let todIco = data.list[0].weather[0].icon;
+                let tomIco = data.list[3].weather[0].icon;
+                let todDesc = data.list[0].weather[0].description;
+                let tomDesc = data.list[3].weather[0].description;
+                let tod = "<img src='http://openweathermap.org/img/wn/"+todIco+"@2x.png'><br>"+todTemp+" °C, "+todHumi+" %";
+                let tom = "<img src='http://openweathermap.org/img/wn/"+tomIco+"@2x.png'><br>"+tomTemp+" °C, "+tomHumi+" %";
+                $("#today").html(tod);
+                $("#tomorrow").html(tom);
             }
             else{
-                $("#today").html("Today's weather: --");
-                $("#tomorrow").html("Tomorrow's weather: --");
+                $("#today").html("Dzisiaj: --");
+                $("#tomorrow").html("Jutro: --");
             }
         })
     
@@ -90,8 +92,8 @@ function getDateTime(){
     setInterval(function(){
     const event = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var today = event.toLocaleDateString('en-GB', options);
-        var now = new Date().toLocaleTimeString('en-GB');
+        var today = event.toLocaleDateString('pl-PL', options);
+        var now = new Date().toLocaleTimeString('pl-PL');
         $("#date").html(today);
         $("#time").html(now);
     },1000)

@@ -36,3 +36,13 @@ body{
     font-size: 1.5rem;
     text-align: right !important;
 }
+.forecast{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.tom, .tod{
+    width: 30%;
+    text-align: center;
+}
