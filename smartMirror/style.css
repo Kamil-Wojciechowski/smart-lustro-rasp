@@ -39,31 +39,23 @@ body {
           align-items: flex-start;
 }
 
-.left, .right {
-  width: 50%;
+.left {
+  width: 70%;
 }
 
 .right {
+  width: 30%;
   font-size: 1.5rem;
   text-align: right !important;
+  border: 1px solid white;
 }
 
 .forecast {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  border: 1px solid white;
 }
 
 .tom, .tod {
-  width: 30%;
   text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
