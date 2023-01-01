@@ -47,12 +47,10 @@ body {
   width: 30%;
   font-size: 1.5rem;
   text-align: right !important;
-  border: 1px solid white;
 }
 
 .forecast {
   width: 100%;
-  border: 1px solid white;
 }
 
 .tom, .tod {
