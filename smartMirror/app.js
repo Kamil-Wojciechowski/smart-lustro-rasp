@@ -115,10 +115,12 @@ function changeMode(){
                 else{
                     $('.main').css("text-align","left");
                     $('.data').css("display","block");
-                    $('.left').css("width","70%");
-                    $('.right').css("width","30%");
+                    $('.left').css("width","50%");
+                    $('.right').css("width","50%");
                     $('.calendar').css("display","block");
                     $('.forecast').css("display","block");
+                    $('.forecast').css("flex-direction","row");
+                    $('.forecast').css("justify-content","flex-end");
                     getDht();
                     getForecast();
                 }
