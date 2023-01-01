@@ -119,6 +119,8 @@ function changeMode(){
                     $('.right').css("width","50%");
                     $('.calendar').css("display","block");
                     $('.forecast').css("display","flex");
+                    $('.forecast').css("flex-direction","row");
+                    $('.forecast').css("justify-content","flex-end");
                     getDht();
                     getForecast();
                 }
